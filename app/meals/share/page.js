@@ -1,9 +1,8 @@
-export default function Share() {
+export default function SharePage() {
   return (
     <main>
       <h1 style={{ color: 'white', textAlign: 'center' }}>
-        Time to get started!sss
-       
+        its meal page to get started!
       </h1>
     </main>
   );
