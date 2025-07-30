@@ -5,12 +5,25 @@ import { getMealBySlug, getMeals } from '@/lib/meals';
 import { notFound } from 'next/navigation';
 
 
+
 export async function generateStaticParams() {
   const meals = await getMeals();
 
   return meals.map((meal) => ({
     mealSlug: meal.slug,
   }));
+}
+
+
+export async function generateMetadata({ params}) {
+  const meals = await getMealBySlug(params.mealSlug);
+  if (!meals) {
+   notFound();
+  }
+  return {
+    title: meals.title,
+    description: meals.summary,
+  }
 }
 
 export default async function MealsDetailsPage({ params }) {
